@@ -1,6 +1,8 @@
 # Purpose
 This extension allows displaying thumbnails of OpenEXR (.exr) files.
 
+![screenshot](https://user-images.githubusercontent.com/7930348/69484044-def36900-0e2e-11ea-8a54-206839ba789d.png)
+
 # Compilation
 ```
 ./autogen.sh
