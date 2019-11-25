@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: openexr-thumbnailer
-Source: <url://example.com>
+Source: https://github.com/yama-chan/openexr-thumbnailer
 
 Files: *
 Copyright: 2019 Alban Fichet <alban.fichet@inria.fr>
