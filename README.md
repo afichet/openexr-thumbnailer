@@ -10,6 +10,8 @@ make
 sudo make install
 ```
 # Packages
+
+## Ubuntu
 Currently, there is packages for the following Ubuntu versions
 - Ubuntu 18.04 LTS (Bionic)
 - Ubuntu 19.04 (Disco)
@@ -20,4 +22,10 @@ To install, simply execute:
 sudo add-apt-repository ppa:alban-f/openexr-thumbnailer
 sudo apt-get update
 sudo apt install openexr-thumbnailer
+```
+
+## Arch Linux
+There is an AUR to ease installation:
+```
+yay -S openexr-thumbnailer
 ```
