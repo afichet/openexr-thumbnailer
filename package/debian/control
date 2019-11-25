@@ -1,0 +1,15 @@
+Source: openexr-thumbnailer
+Section: utils
+Priority: optional
+Maintainer: Alban Fichet <alban.fichet@inria.fr>
+Build-Depends: debhelper (>= 11), gnome-common, libglib2.0-dev, libgdk-pixbuf2.0-dev, libopenexr-dev
+Standards-Version: 4.1.3
+Homepage: https://github.com/yama-chan/openexr-thumbnailer
+#Vcs-Browser: https://salsa.debian.org/debian/openexr-thumbnailer
+#Vcs-Git: https://salsa.debian.org/debian/openexr-thumbnailer.git
+
+Package: openexr-thumbnailer
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Thumbnailer for OpenEXR
+ Shows thumbnails in your filemanager for OpenEXR images
