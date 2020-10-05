@@ -1,0 +1,21 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: depends
+      run: sudo apt install gnome-common libglib2.0-dev libgdk-pixbuf2.0-dev libopenexr-dev
+    - name: configure
+      run: ./autogen.sh
+    - name: make
+      run: make
