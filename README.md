@@ -13,6 +13,7 @@ sudo make install
 
 ## Ubuntu
 Currently, there is packages for the following Ubuntu versions
+- Ubuntu 20.04 LTS (Focal)
 - Ubuntu 18.04 LTS (Bionic)
 - Ubuntu 19.04 (Disco)
 - Ubuntu 19.10 (Eoan)
