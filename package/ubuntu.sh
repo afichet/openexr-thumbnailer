@@ -2,12 +2,12 @@
 # Inspired from RetroShare packaging script
 
 MAJOR_VERSION=1
-MINOR_VERSION=1
+MINOR_VERSION=2
 PKG_NAME="openexr-thumbnailer"
-# xenial trusty
-dist="bionic disco eoan"
+REPO=git@github.com:afichet/openexr-thumbnailer.git
+FOLDER=openexr-thumbnailer
+dist="bionic focal groovy"
 ppa_addr="ppa:alban-f/openexr-thumbnailer"
-
 version_number="${MAJOR_VERSION}"'.'"${MINOR_VERSION}"
 package_dir="${PKG_NAME}"'-'"${version_number}"
 
@@ -28,13 +28,15 @@ mkdir ${package_dir}
 cd ${package_dir}
 
 # Creating source tarball
-git clone git@github.com:yama-chan/openexr-thumbnailer.git
-tar cvzf "${PKG_NAME}_${version_number}.orig.tar.gz" openexr-thumbnailer
+git clone "${REPO}" "${FOLDER}"
+cd "${FOLDER}"
+rm -rf .git
+cd ..
+tar cvzf "${PKG_NAME}_${version_number}.orig.tar.gz" "${FOLDER}"
 
 # For each distribution, generating a changelog
 for i in ${dist}; do
-    cd openexr-thumbnailer
-    rm -r debian
+    cd "${FOLDER}"
     cp -r ../../debian .
     sed -e s/XXXXXX/"${rev}"/g -e s/YYYYYY/"${i}"/g -e s/ZZZZZZ/"${version_number}"/g ../../debian/changelog > debian/changelog
     debuild -S
