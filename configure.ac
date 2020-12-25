@@ -22,7 +22,7 @@ dnl 	      AS_HELP_STRING([--disable-update-mimedb],
 dnl 			     [disable the update-mime-database after install [default=no]]),,
 dnl 			     enable_update_mimedb=yes)
 dnl AM_CONDITIONAL(ENABLE_UPDATE_MIMEDB, test x$enable_update_mimedb = xyes)
-AM_CONDITIONAL(ENABLE_UPDATE_MIMEDB, no)
+AM_CONDITIONAL(ENABLE_UPDATE_MIMEDB, false)
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
