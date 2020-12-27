@@ -19,3 +19,7 @@ jobs:
       run: ./autogen.sh
     - name: make
       run: make
+    - name: mkdir
+      run: mkdir fakeroot
+    - name: make install
+      run: DESTDIR=$PWD/fakeroot make install
