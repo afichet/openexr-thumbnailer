@@ -1,4 +1,0 @@
-[Thumbnailer Entry]
-TryExec=@bindir@/gnome-openexr-thumbnailer
-Exec=@bindir@/gnome-openexr-thumbnailer -s %s %u %o
-MimeType=image/x-exr;

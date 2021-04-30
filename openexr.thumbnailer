@@ -1,0 +1,4 @@
+[Thumbnailer Entry]
+TryExec=openexr-thumbnailer
+Exec=openexr-thumbnailer -s %s %u %o
+MimeType=image/x-exr;

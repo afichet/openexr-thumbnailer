@@ -22,17 +22,16 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #ifdef THUMBNAILER_RETURNS_PIXBUF
-#ifdef THUMBNAILER_RETURNS_DATA
-#error "Only one of THUMBNAILER_RETURNS_PIXBUF or THUMBNAILER_RETURNS_DATA must be set"
-#else
-GdkPixbuf * file_to_pixbuf (const char  *path,
-			    guint        destination_size,
-			    GError     **error);
-#endif
+#    ifdef THUMBNAILER_RETURNS_DATA
+#        error                                                                 \
+            "Only one of THUMBNAILER_RETURNS_PIXBUF or THUMBNAILER_RETURNS_DATA must be set"
+#    else
+GdkPixbuf *
+file_to_pixbuf(const char *path, guint destination_size, GError **error);
+#    endif
 #elif THUMBNAILER_RETURNS_DATA
-char * file_to_data (const char  *path,
-		     gsize       *ret_length,
-		     GError     **error);
+char *file_to_data(const char *path, gsize *ret_length, GError **error);
 #else
-#error "One of THUMBNAILER_RETURNS_PIXBUF or THUMBNAILER_RETURNS_DATA must be set"
+#    error                                                                     \
+        "One of THUMBNAILER_RETURNS_PIXBUF or THUMBNAILER_RETURNS_DATA must be set"
 #endif
