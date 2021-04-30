@@ -27,11 +27,9 @@
 #include <math.h>
 #include <stdlib.h>
 
-#include "gnome-thumbnailer-skeleton.h"
+#include "thumbnailer-skeleton.h"
 
-#ifndef THUMBNAILER_USAGE
-#    error "THUMBNAILER_USAGE must be set"
-#endif
+#define THUMBNAILER_USAGE "Thumbnail OpenEXR"
 
 static int      output_size      = 256;
 static gboolean g_fatal_warnings = FALSE;
