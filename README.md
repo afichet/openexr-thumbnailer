@@ -4,10 +4,16 @@ This extension allows displaying thumbnails of OpenEXR (.exr) files.
 ![screenshot](https://user-images.githubusercontent.com/7930348/69484044-def36900-0e2e-11ea-8a54-206839ba789d.png)
 
 # Compilation
+This package requires the following dependencies:
+- OpenEXR
+- gio-2.0
+- gdk-pixbuf-2.0
+
 ```
-./autogen.sh
-make
-sudo make install
+mkdir build
+cd build
+cmake ..
+make install
 ```
 # Packages
 
