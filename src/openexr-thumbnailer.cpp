@@ -34,37 +34,39 @@ double to_sRGB(double rgb_color)
 unsigned char *load_exr(const char *path, int *width, int *height)
 {
     Imf::RgbaInputFile f(path);
-    unsigned char *img = nullptr;
+    unsigned char *    img = nullptr;
 
 #ifdef USE_PREVIEW
     if (f.header().hasPreviewImage()) {
         const Imf::PreviewImage &preview = f.header().previewImage();
-        *width  = preview.width();
-        *height = preview.height();
-        img     = new unsigned char[3 * (*width) * (*height)];
+        *width                           = preview.width();
+        *height                          = preview.height();
+        img = new unsigned char[3 * (*width) * (*height)];
 
         for (int i = 0; i < (*width) * (*height); i++) {
-            img[3*i + 0] = preview.pixels()[i].r;
-            img[3*i + 1] = preview.pixels()[i].g;
-            img[3*i + 2] = preview.pixels()[i].b;
+            img[3 * i + 0] = preview.pixels()[i].r;
+            img[3 * i + 1] = preview.pixels()[i].g;
+            img[3 * i + 2] = preview.pixels()[i].b;
         }
     } else {
-#endif // USE_PREVIEW
+#endif   // USE_PREVIEW
         Imf::Array2D<Imf::Rgba> pixels;
 
-        Imath::Box2i       dw = f.dataWindow();
-        int                w  = dw.max.x - dw.min.x + 1;
-        int                h  = dw.max.y - dw.min.y + 1;
-        *width                = w;
-        *height               = h;
-        img                   = new unsigned char[3 * w * h];
+        Imath::Box2i dw = f.dataWindow();
+        int          w  = dw.max.x - dw.min.x + 1;
+        int          h  = dw.max.y - dw.min.y + 1;
+        *width          = w;
+        *height         = h;
+        img             = new unsigned char[3 * w * h];
 
         pixels.resizeErase(h, w);
         f.setFrameBuffer(&pixels[0][0] - dw.min.x - dw.min.y * w, 1, w);
         f.readPixels(dw.min.y, dw.max.y);
 
         // Check if there is specific chromaticities tied to the color representation in this part.
-        const Imf::ChromaticitiesAttribute *c = f.header().findTypedAttribute<Imf::ChromaticitiesAttribute>("chromaticities");
+        const Imf::ChromaticitiesAttribute *c
+            = f.header().findTypedAttribute<Imf::ChromaticitiesAttribute>(
+                "chromaticities");
 
         Imf::Chromaticities chromaticities;
 
@@ -84,17 +86,17 @@ unsigned char *load_exr(const char *path, int *width, int *height)
                 Imath::V3f rgb(pixels[y][x].r, pixels[y][x].g, pixels[y][x].b);
                 rgb *= conversionMatrix;
 
-                img[3*(y*w + x) + 0] =
-                    (unsigned char)(255.0*std::min(1.0, std::max(0.0, to_sRGB(rgb.x))));
-                img[3*(y*w + x) + 1] =
-                    (unsigned char)(255.0*std::min(1.0, std::max(0.0, to_sRGB(rgb.y))));
-                img[3*(y*w + x) + 2] =
-                    (unsigned char)(255.0*std::min(1.0, std::max(0.0, to_sRGB(rgb.z))));
+                img[3 * (y * w + x) + 0]
+                    = (unsigned char)(255.0 * std::min(1.0, std::max(0.0, to_sRGB(rgb.x))));
+                img[3 * (y * w + x) + 1]
+                    = (unsigned char)(255.0 * std::min(1.0, std::max(0.0, to_sRGB(rgb.y))));
+                img[3 * (y * w + x) + 2]
+                    = (unsigned char)(255.0 * std::min(1.0, std::max(0.0, to_sRGB(rgb.z))));
             }
         }
 #ifdef USE_PREVIEW
     }
-#endif // USE_PREVIEW
+#endif   // USE_PREVIEW
 
     return img;
 }
