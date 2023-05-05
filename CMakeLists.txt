@@ -10,7 +10,8 @@ find_package(Imath CONFIG)
 find_package(OpenEXR CONFIG)
 if (OpenEXR_FOUND)
     set(OpenEXR_LIBRARIES 
-        OpenEXR::IlmImf
+        OpenEXR::OpenEXR
+        Imath::Imath
     )
 else()
     set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
