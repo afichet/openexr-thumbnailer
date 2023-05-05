@@ -9,10 +9,14 @@ pkg_check_modules(GDK REQUIRED gdk-pixbuf-2.0)
 find_package(Imath CONFIG)
 find_package(OpenEXR CONFIG)
 if (OpenEXR_FOUND)
-    set(OpenEXR_LIBRARIES 
-        OpenEXR::OpenEXR
-        Imath::Imath
-    )
+    if (TARGET OpenEXR::OpenEXR)
+        set(OpenEXR_LIBRARIES 
+            OpenEXR::OpenEXR
+            Imath::Imath
+	    )
+    else()
+        set(OpenEXR_LIBRARIES OpenEXR::IlmImf)
+    endif()
 else()
     set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
     find_package(OpenEXR REQUIRED)
